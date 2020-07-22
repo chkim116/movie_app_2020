@@ -7,8 +7,9 @@ return <h3>Hello! I LUV {fav}</h3>
 function App() {
   return (
   <div>
-    <h1>hi</h1>
+    
     <Food fav="kimchis" />
+    <h1>hi</h1>
     <Food fav="donggas" />
   </div>
   );
