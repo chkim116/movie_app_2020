@@ -6,7 +6,9 @@ function Movie({ id, year, rating, title, summary, poster, genres }) {
     <div className="movie__desc">
       <div className="movie__img">
         <img src={poster} alt={title} title={title}></img>
-        <h3 className="movie__title">{title}</h3>
+        <div className="movie__title-box">
+          <h3 className="movie__title">{title}</h3>
+        </div>
       </div>
       <div className="movie__desc-det">
         <div className="movie__sub">
