@@ -4,12 +4,14 @@ import PropTypes from "prop-types";
 function Movie({ id, year, rating, title, summary, poster, genres }) {
   return (
     <div className="movie__desc">
-      <img src={poster} alt={title} title={title}></img>
-      <div className="movie__desc-det">
+      <div className="movie__img">
+        <img src={poster} alt={title} title={title}></img>
         <h3 className="movie__title">{title}</h3>
+      </div>
+      <div className="movie__desc-det">
         <div className="movie__sub">
-          <h5 className="movie__year">{year}</h5>
-          <p className="movie__rating">{rating}</p>
+          <h5 className="movie__year">Year {year}</h5>
+          <h5 className="movie__rating">Rating {rating}</h5>
         </div>
         <ul className="movie__genr">
           {genres.map((genr, index) => (
@@ -19,7 +21,7 @@ function Movie({ id, year, rating, title, summary, poster, genres }) {
           ))}
           {/* 맵은 복제함과 동시에 배열마다의 index값을 줘서 key는 index를 넣어주면된다 */}
         </ul>
-        <p className="movie__sum">{summary}</p>
+        <p className="movie__sum">{summary.slice(0, 240)}...</p>
       </div>
     </div>
   );

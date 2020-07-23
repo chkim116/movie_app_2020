@@ -5,16 +5,20 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    isLoding: true,
+    isLoading: true,
     movies: [],
   };
+
   getMovie = async () => {
     const {
       data: {
         data: { movies },
       },
-    } = await Axios.get("https://yts.mx/api/v2/list_movies.json");
-    this.setState({ movies: movies, isLoding: false }); // movies:movies는 movies와 같다.
+    } = await Axios.get(
+      "https://yts.mx/api/v2/list_movies.json?sort_by=download_count"
+      // ?sort_by=download_count 를 url뒤에 붙여 놓으면 다운로드 카운트 순서대로 나온다.
+    );
+    this.setState({ movies: movies, isLoading: false }); // movies:movies는 movies와 같다.
     // 로딩을 완료한 후 we are ready!를 출력
   };
 
@@ -22,12 +26,12 @@ class App extends React.Component {
     this.getMovie();
   }
   render() {
-    const { isLoding, movies } = this.state;
+    const { isLoading, movies } = this.state;
     return (
       <section className="section">
-        {isLoding ? (
-          <div className="loding">
-            <div className="loding__text">Loding..</div>
+        {isLoading ? (
+          <div className="loading">
+            <div className="loading__text">Please one seconds!</div>
           </div>
         ) : (
           <div className="movies">
