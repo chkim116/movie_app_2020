@@ -14,6 +14,7 @@ class App extends React.Component {
       data: {
         data: { movies },
       },
+      // 데이터 안에 데이터 안에 movies.
     } = await Axios.get(
       "https://yts.mx/api/v2/list_movies.json?sort_by=like_count"
       // ?sort_by=download_count 를 url뒤에 붙여 놓으면 다운로드 카운트 순서대로 나온다.
@@ -27,6 +28,7 @@ class App extends React.Component {
   }
   render() {
     const { isLoading, movies } = this.state;
+    console.log({ isLoading, movies });
     return (
       <section className="section">
         {isLoading ? (
