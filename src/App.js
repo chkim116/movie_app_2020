@@ -1,30 +1,51 @@
 import React from "react";
+import Axios from "axios";
+import Movie from "./Movie";
+import "./App.css";
 
 class App extends React.Component {
   state = {
-    count: 0,
+    isLoding: true,
+    movies: [],
   };
-  add = () => {
-    this.setState((current) => ({ count: current.count + 1 }));
+  getMovie = async () => {
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await Axios.get("https://yts.mx/api/v2/list_movies.json");
+    this.setState({ movies: movies, isLoding: false }); // movies:movies는 movies와 같다.
+    // 로딩을 완료한 후 we are ready!를 출력
   };
-  minus = () => {
-    this.setState((current) => ({ count: current.count - 1 }));
-  };
-  pow = () => {
-    this.setState((current) => ({ count: current.count * current.count }));
-  };
-  reset = () => {
-    this.setState({ count: 0 });
-  };
+
+  componentDidMount() {
+    this.getMovie();
+  }
   render() {
+    const { isLoding, movies } = this.state;
     return (
-      <div>
-        <h3>The number is : {this.state.count}</h3>
-        <button onClick={this.add}>add</button>
-        <button onClick={this.minus}>minus</button>
-        <button onClick={this.pow}>power</button>
-        <button onClick={this.reset}>reset</button>
-      </div>
+      <section className="section">
+        {isLoding ? (
+          <div className="loding">
+            <div className="loding__text">Loding..</div>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map((movie) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                rating={movie.rating}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            ))}
+          </div>
+        )}
+      </section>
     );
   }
 }
