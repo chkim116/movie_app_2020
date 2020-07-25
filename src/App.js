@@ -29,6 +29,7 @@ class App extends React.Component {
   render() {
     const { isLoading, movies } = this.state;
     console.log({ isLoading, movies });
+    // const {} 여기 안에는 ,, 음..
     return (
       <section className="section">
         {isLoading ? (
