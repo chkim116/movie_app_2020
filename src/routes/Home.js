@@ -3,7 +3,7 @@ import Axios from "axios";
 import Movie from "../component/Movie";
 import "./Home.css";
 
-class App extends React.Component {
+class Home extends React.Component {
   state = {
     isLoading: true,
     movies: [],
@@ -28,7 +28,6 @@ class App extends React.Component {
   }
   render() {
     const { isLoading, movies } = this.state;
-    console.log({ isLoading, movies });
     // const {} 여기 안에는 ,, 음..
     return (
       <section className="section">
@@ -59,4 +58,4 @@ class App extends React.Component {
 // this는 상위에 있는 선언한 객체를 불러온다고 생각하면된다. 여기서는 App을 뜻한다.
 // 그래서 App.state.count라고 생각하면 된다.
 // div안에 있어야 한다. (태그안에)
-export default App;
+export default Home;
